@@ -44,10 +44,15 @@ function storeUser() {
             allUsers();
         },
         error: function (response) {
-            $('#create-name').addClass('is-invalid');
-            $('#create-email').addClass('is-invalid');
-            $('#create-name-error').text(response.responseJSON.errors.name);
-            $('#create-email-error').text(response.responseJSON.errors.email);
+            if(response.responseJSON.errors.name) {
+                $('#create-name').addClass('is-invalid');
+                $('#create-name-error').text(response.responseJSON.errors.name);
+            }
+
+            if(response.responseJSON.errors.email) {
+                $('#create-email').addClass('is-invalid');
+                $('#create-email-error').text(response.responseJSON.errors.email);
+            }
         }
     });
 }
@@ -95,10 +100,15 @@ function updateUser() {
             $('#edit-user-modal').modal('hide');
         },
         error: function (response) {
-            $('#edit-name').addClass('is-invalid')
-            $('#edit-email').addClass('is-invalid')
-            $('#edit-name-error').text(response.responseJSON.errors.name);
-            $('#edit-email-error').text(response.responseJSON.errors.email);
+            if(response.responseJSON.errors.name) {
+                $('#edit-name').addClass('is-invalid');
+                $('#edit-name-error').text(response.responseJSON.errors.name);
+            }
+
+            if(response.responseJSON.errors.email) {
+                $('#edit-email').addClass('is-invalid')
+                $('#edit-email-error').text(response.responseJSON.errors.email);
+            }
         }
     });
 }
